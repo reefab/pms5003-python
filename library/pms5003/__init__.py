@@ -92,6 +92,14 @@ class PMS5003():
         self._pin_reset = pin_reset
         self.setup()
 
+    def disable(self):
+        '''Put sensor in low power mode. Cut fan and laser.'''
+        GPIO.output(self._pin_enable, GPIO.LOW)
+
+    def enable(self):
+        '''Wake sensor from low power mode.'''
+        GPIO.output(self._pin_enable, GPIO.HIGH)
+
     def setup(self):
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
